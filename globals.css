@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  min-height: 100vh;
+}
+
+/* Custom styles for notes and todo items */
+.note-card {
+  @apply rounded-lg p-4 shadow-md transition-all duration-200 hover:shadow-lg;
+}
+
+.todo-item {
+  @apply flex items-center gap-2 rounded-md p-2 transition-all duration-200;
+}
+
+.note-color-tag {
+  @apply absolute top-0 left-0 h-2 w-full rounded-t-lg;
+} 
