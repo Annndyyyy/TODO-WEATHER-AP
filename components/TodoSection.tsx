@@ -19,14 +19,14 @@ export default function TodoSection() {
     intervalId: NodeJS.Timeout | null
   }>>({});
 
-  // Filter todos based on search query
+  
   const filteredTodos = todos.filter(
     (todo) => todo.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Set up timers for todos
+  
   useEffect(() => {
-    // Clear existing intervals when component unmounts
+    
     return () => {
       Object.values(todosWithTimers).forEach(timer => {
         if (timer.intervalId) {
@@ -36,41 +36,41 @@ export default function TodoSection() {
     };
   }, []);
 
-  // Setup/update timers whenever todos change
+ 
   useEffect(() => {
-    // Get current time
+    
     const now = new Date();
     
-    // Setup new timers for todos with durations
+    
     todos.forEach(todo => {
-      // Skip completed todos
+      
       if (todo.completed) {
         return;
       }
       
-      // If todo already has a timer running, skip it
+      
       if (todosWithTimers[todo.id]?.intervalId) {
         return;
       }
       
-      // If todo has a duration, set up a timer
+      
       if (todo.duration) {
         let timeLeft = null;
         
         if (todo.dueDate) {
-          // Calculate time left based on due date
+          
           const dueDate = new Date(todo.dueDate);
           const timeDiff = dueDate.getTime() - now.getTime();
           
-          // If due date is in the past, set timeLeft to 0
+          
           timeLeft = Math.max(0, Math.floor(timeDiff / 1000));
         } else if (todo.duration) {
-          // If no due date, just use the duration in minutes
+          
           timeLeft = todo.duration * 60;
         }
         
         if (timeLeft !== null && timeLeft > 0) {
-          // Start a timer
+          
           const intervalId = setInterval(() => {
             setTodosWithTimers(prev => {
               const currentTimer = prev[todo.id];
@@ -79,10 +79,10 @@ export default function TodoSection() {
                 return prev;
               }
               
-              // Decrement time
+              
               const newTimeLeft = currentTimer.timeLeft - 1;
               
-              // If timer reaches 0, show notification and clear interval
+              
               if (newTimeLeft <= 0) {
                 if ('Notification' in window && Notification.permission === 'granted') {
                   new Notification('Todo Timer Complete', {
@@ -91,7 +91,7 @@ export default function TodoSection() {
                   });
                 }
                 
-                // Clear the interval
+                
                 if (currentTimer.intervalId) {
                   clearInterval(currentTimer.intervalId);
                 }
@@ -115,7 +115,7 @@ export default function TodoSection() {
             });
           }, 1000);
           
-          // Store the interval ID and initial time
+          
           setTodosWithTimers(prev => ({
             ...prev,
             [todo.id]: { 
@@ -128,7 +128,7 @@ export default function TodoSection() {
     });
   }, [todos]);
 
-  // Format time for display
+  
   const formatTime = (seconds: number | null) => {
     if (seconds === null) return '--:--';
     
@@ -144,7 +144,7 @@ export default function TodoSection() {
     
     addTodo({
       ...newTodo,
-      // Convert duration from hours and minutes to minutes
+      
       duration: newTodo.duration,
     });
     
@@ -170,7 +170,7 @@ export default function TodoSection() {
     setEditingTodo(null);
   };
 
-  // Handle changes to duration (in minutes)
+  
   const handleDurationChange = (minutes: number | null) => {
     if (editingTodo) {
       setEditingTodo({
@@ -185,7 +185,7 @@ export default function TodoSection() {
     }
   };
 
-  // Helper function to get tomorrow's date formatted for input
+ 
   const getTomorrowDateString = () => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
