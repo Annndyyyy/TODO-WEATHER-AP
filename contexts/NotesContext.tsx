@@ -33,7 +33,7 @@ export function NotesProvider({ children }: { children: React.ReactNode }) {
     if (savedNotes) {
       setNotes(JSON.parse(savedNotes));
     } else {
-      // Set demo notes if none exist
+      
       const demoNotes: Note[] = [
         {
           id: '1',
