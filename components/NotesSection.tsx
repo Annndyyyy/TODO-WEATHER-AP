@@ -15,7 +15,7 @@ export default function NotesSection() {
   });
   const [editingNote, setEditingNote] = useState<Note | null>(null);
 
-  // Filter notes based on search query
+ 
   const filteredNotes = notes.filter(
     (note) =>
       note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -72,7 +72,7 @@ export default function NotesSection() {
         </button>
       </div>
 
-      {/* Search Bar */}
+      {}
       <div className="relative">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
