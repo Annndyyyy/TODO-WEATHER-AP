@@ -25,8 +25,7 @@ export default function WeatherWidget() {
             async (position) => {
               const { latitude, longitude } = position.coords;
               
-              // For demo purposes, we're using OpenWeatherMap API
-              // In a production app, you should use environment variables for the API key
+
               const API_KEY = 'd54fe5abcacb10cf0c5122f0fa3d66dc'; // API key provided by user
               const response = await fetch(
                 `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
