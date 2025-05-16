@@ -2,7 +2,7 @@
 
 A feature-rich web application for managing notes and todos with real-time weather information.
 
-## Features
+## Features:
 
 - **Notes System**
   - Create, edit, and delete notes
