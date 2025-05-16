@@ -63,7 +63,7 @@ export default function WeatherWidget() {
       }
     };
 
-    // For development purposes, use mock data to avoid API calls
+   
     const useMockData = false; // Set to false to use real API
     
     if (useMockData) {
